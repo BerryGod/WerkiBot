@@ -1,0 +1,1 @@
+exports.Color = `#00f7ff"`;
