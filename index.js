@@ -463,35 +463,8 @@ bot.on("message", async message => {
 
 
 
-    if (cmd === `${prefix}kitagadunk`) {
-        if (!message.member.permissions.has('MANAGE_WEBHOOK')) return;
-
-
-        const member = message.mentions.members.first();
-        if (!member) return message.reply("Jelölj meg egy embert akit ki akarsz tagadni!");
-
-        if (message.member.roles.highest.position <=
-            member.roles.highest.position
-        )
-
-            return message.reply(
-            "Az illető magasabb rangú mint te!"
-        );
-
-        const reason = args.slice(1).join(" ") || "Nincs indok csatolva."
-
-        member.kick({ reason });
-        let kickEmbed = new Discord.MessageEmbed()
-            .setColor("#00f7ff")
-            .setAuthor(`${member} ki lett tagadva az oláh cigányok közül Általa: ${message.author.username}`)
-
-        message.channel.send(kickEmbed);
-        console.log("kick was used")
-    }
-
-
-    if (cmd === `${prefix}kitagadunk`) {
-        if (!message.member.permissions.has('MANAGE_WEBHOOK')) return;
+    if (cmd === `${prefix}ban`) {
+        if (!message.member.permissions.has('BAN_MEMBERS')) return;
 
 
         const member = message.mentions.members.first();
@@ -511,6 +484,33 @@ bot.on("message", async message => {
         let kickEmbed = new Discord.MessageEmbed()
             .setColor("#00f7ff")
             .setAuthor(`${member} ki lett tiltva az oláh cigányok közül Általa: ${message.author.username}`)
+
+        message.channel.send(kickEmbed);
+        console.log("kick was used")
+    }
+
+
+    if (cmd === `${prefix}kick`) {
+        if (!message.member.permissions.has('KICK_MEMBERS')) return;
+
+
+        const member = message.mentions.members.first();
+        if (!member) return message.reply("Jelölj meg egy embert akit ki akarsz tagadni!");
+
+        if (message.member.roles.highest.position <=
+            member.roles.highest.position
+        )
+
+            return message.reply(
+            "Az illető magasabb rangú mint te!"
+        );
+
+        const reason = args.slice(1).join(" ") || "Nincs indok csatolva."
+
+        member.kick({ reason });
+        let kickEmbed = new Discord.MessageEmbed()
+            .setColor("#00f7ff")
+            .setAuthor(`${member} ki lett tagadva az oláh cigányok közül Általa: ${message.author.username}`)
 
         message.channel.send(kickEmbed);
         console.log("ban was used")
