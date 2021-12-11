@@ -1046,4 +1046,4 @@ if(cmd === `${prefix}unmute`){
     //////////////////////////////////////////////////////////
 })
 
-bot.login(process.enc.token);
+bot.login(process.env.token);
