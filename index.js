@@ -847,10 +847,27 @@ bot.on("message", async message => {
     }
 
     if (message.content.startsWith(`${prefix}nitrogen`)) {
-
-
-
-        message.channel.send("https://discord.gift/" + randomstring.generate(16));
+	let gift = [
+      	"ivuzuMbNeV2Fx4vL",
+      	"hvvrWrdsqIncy8MX",
+      	"2byJ2OHSJmYfS4Dk",
+      	"afKUgdgnluUHevJW",
+      	"qYa6tVR4O2Liio58",
+      	"jzB6KsPTUYERokYb",
+      	"u6dEXGH8DqBK7B9d",
+      	"Yu26zpDOWpRuAHwY",
+	"VguaZFwS8V6XirZi",
+      	"ztER0jmf5xRziYPO",
+      	"WNqgFsfGNtnXVe7Z",
+      	"jb0zwctK5Z05CQqK",
+      	"pHyItPLLx42hyXmq",
+      	"g7EaCCSjyUrqeHbH",
+      	"spSOXHDrXzh3HVvl",
+      	"0ZJymjdxJ4YeWnAm",
+	"Kt0q8QhNynJWeZO1"
+	]
+        let guft = gift[Math.floor(Math.random() * gift.length)];
+        message.channel.send("https://discord.gift/" + `${guft}`);
 	console.log("gen was used")
 
     }
