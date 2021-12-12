@@ -127,7 +127,7 @@ bot.on("message", async message => {
             .setColor("#00f7ff")
             .addField("***ADMIN***", "-clear, -addrole, -removerole, -addrole, -kick, -ban")
             .addField("***FUN***ㅤ", "-giveaway, -nitro, -search, -botinfo, -say, -meme, -cica, -kviz, -nitrogen, -dick, -tökönrúg, -csomagol")
-	    .addField("***CRYPTO***", "-bitcoin, ")
+	    .addField("***CRYPTO***", "-bitcoin, -ethereum, -dogecoin")
             .addField("***ZENE***", "-play, -skip, -volume, -lyrics, -np, -pause, -queue, -resume, -shuffel, -stop, -volume")
             .addField("***MONEY***", "-money, -shop, -slot, -toplista, -pay, -work")
             .addField("***BOTTAL KAPCSOLATBAN***", "-botinfo, -help, -helptouse")
@@ -256,15 +256,34 @@ bot.on("message", async message => {
             vs_currencies: ['huf', 'usd'],
         });
         console.log(data)
-        let btcEmbed = new Discord.MessageEmbed()
+        let ethEmbed = new Discord.MessageEmbed()
             .setDescription(`Ethereum ára`)
             .setColor("#00f7ff")
             .setFooter(bot.user.username)
             .addField("Az ethereum ennyit ér: " + data.data.ethereum.huf + " HUF ")
             .addField("Az ethereum ennyit ér: " + data.data.ethereum.usd + " USD ")
             .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/640px-Ethereum-icon-purple.svg.png")
-        message.channel.send(btcEmbed);
+        message.channel.send(ethEmbed);
     }
+
+    if (message.content.startsWith('-dogecoin')) {
+        const CoinGecko = require('coingecko-api');
+        const CoinGeckoClient = new CoinGecko();
+        let data = await CoinGeckoClient.simple.price({
+            ids: ['dogecoin'],
+            vs_currencies: ['huf', 'usd'],
+        });
+        console.log(data)
+        let dogeEmbed = new Discord.MessageEmbed()
+            .setDescription(`Dogecoin ára`)
+            .setColor("#00f7ff")
+            .setFooter(bot.user.username)
+            .addField("A dogecoin ennyit ér: " + data.data.dogecoin.huf + " HUF ")
+            .addField("A dogecoin ennyit ér: " + data.data.dogecoin.usd + " USD ")
+            .setThumbnail("https://www.deadmansbones.net/images/how-to-mine-dogecoin-ultimate-guide-2021-cryptogeek-2.jpeg")
+        message.channel.send(dogeEmbed);
+    }
+
     //////////////////////////////////////////////////////////
     if (cmd === `${prefix}számolj`) {
 
