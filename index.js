@@ -90,7 +90,7 @@ bot.on("message", async message => {
             .setColor("#00f7ff")
             .addField("***-helptouse***ㅤ", "egy help parancs ami megmutatja mit hogyan kell csinálni     szükséges rang: akárki")
             .addField("***-help***ㅤ", "help parancs     szükséges rang: akárki")
-            .addField("***-bitcoin***", "megmutatja a bitcoin árfolyamát")
+            .addField("***-cryptonév***", "megmutatja a bizonyos crypto árfolyamát, a lista a help parancsba van")
             .addField("***-giveaway***     giveaway command", "Használat: -giveaway 100s Tárgy   szükséges rang: mod")
             .addField("***-ping***", "A bot pingje   szükséges rang: akárki")
             .addField("***-számolj***", "A bot kiszámolja a matek feladványt    Használat: 3 + 3    szükséges rang: akárki")
@@ -126,7 +126,8 @@ bot.on("message", async message => {
             .setDescription("Prefix: -")
             .setColor("#00f7ff")
             .addField("***ADMIN***", "-clear, -addrole, -removerole, -addrole, -kick, -ban")
-            .addField("***FUN***ㅤ", "-bitcoin, -giveaway, -nitro, -search, -botinfo, -say, -meme, -cica, -kviz, -nitrogen, -dick, -tökönrúg, -csomagol")
+            .addField("***FUN***ㅤ", "-giveaway, -nitro, -search, -botinfo, -say, -meme, -cica, -kviz, -nitrogen, -dick, -tökönrúg, -csomagol")
+	    .addField("***CRYPTO***", "-bitcoin, ")
             .addField("***ZENE***", "-play, -skip, -volume, -lyrics, -np, -pause, -queue, -resume, -shuffel, -stop, -volume")
             .addField("***MONEY***", "-money, -shop, -slot, -toplista, -pay, -work")
             .addField("***BOTTAL KAPCSOLATBAN***", "-botinfo, -help, -helptouse")
@@ -241,9 +242,27 @@ bot.on("message", async message => {
             .setDescription(`Bitcoin ára`)
             .setColor("#00f7ff")
             .setFooter(bot.user.username)
-            .addField("Bitcoin ennyit ér: " + data.data.bitcoin.huf + " HUF ")
-            .addField("Bitcoin ennyit ér: " + data.data.bitcoin.usd + " USD ")
-            .setThumbnail("https://m.blog.hu/ma/malkav/image/best_of_troll_2.jpg")
+            .addField("A bitcoin ennyit ér: " + data.data.bitcoin.huf + " HUF ")
+            .addField("A bitcoin ennyit ér: " + data.data.bitcoin.usd + " USD ")
+            .setThumbnail("https://bitcoin.org/img/icons/opengraph.png?")
+        message.channel.send(btcEmbed);
+    }
+    
+     if (message.content.startsWith('-ethereum')) {
+        const CoinGecko = require('coingecko-api');
+        const CoinGeckoClient = new CoinGecko();
+        let data = await CoinGeckoClient.simple.price({
+            ids: ['ethereum'],
+            vs_currencies: ['huf', 'usd'],
+        });
+        console.log(data)
+        let btcEmbed = new Discord.MessageEmbed()
+            .setDescription(`Ethereum ára`)
+            .setColor("#00f7ff")
+            .setFooter(bot.user.username)
+            .addField("Az ethereum ennyit ér: " + data.data.ethereum.huf + " HUF ")
+            .addField("Az ethereum ennyit ér: " + data.data.ethereum.usd + " USD ")
+            .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/640px-Ethereum-icon-purple.svg.png")
         message.channel.send(btcEmbed);
     }
     //////////////////////////////////////////////////////////
