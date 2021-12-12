@@ -280,7 +280,7 @@ bot.on("message", async message => {
             .setFooter(bot.user.username)
             .addField("A dogecoin ennyit ér: " + data.data.dogecoin.huf + " HUF ")
             .addField("A dogecoin ennyit ér: " + data.data.dogecoin.usd + " USD ")
-            .setThumbnail("https://e7.pngegg.com/pngimages/140/487/png-clipart-dogecoin-cryptocurrency-digital-currency-doge-mammal-cat-like-mammal.png")
+            .setThumbnail("https://i.ibb.co/28Z8VWk/png-clipart-dogecoin-cryptocurrency-digital-currency-doge-mammal-cat-like-mammal.png")
         message.channel.send(dogeEmbed);
     }
 
